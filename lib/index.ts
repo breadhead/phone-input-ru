@@ -1,6 +1,7 @@
 import diff from 'fast-diff'
 import * as React from 'react'
 
+import getStringsDiff from 'formatPhone/getStringsDiff'
 import formatNumber from './formatPhone'
 
 const PHONE_COUNTRY_CODES = 7
@@ -31,30 +32,28 @@ class PhoneInput extends React.Component<Props, State> {
     }
 
     const { value } = evt.target
-    let v = value.substr(1, value.length)
+    let currentValue = value.substr(1, value.length)
     const prevValue = this.state.value
 
-    let d = null
-    try {
-      d = diff(v, prevValue)[1][1]
-    } catch {
-      // pass
-    }
+    const currentDiff = getStringsDiff(currentValue, prevValue)
 
-    if (['(', ')'].includes(d)) {
-      v = v.substr(v, v.length - 1)
+    if (['(', ')'].includes(currentDiff)) {
+      // обработаьь удаление скобочки
+      currentValue = currentValue.substr(currentValue, currentValue.length - 1)
     } else {
-      if (isNaN(d) || (['7', '8'].includes(d) && v.length === 2)) {
+      // это число?
+      // это допустимное число? hkfjdh(forbiddenNumbers)(diff) jhfd(['7', '8'])(diff)
+      if (isNaN(currentDiff) || (['7', '8'].includes(currentDiff) && currentValue.length === 2)) {
         return
       }
     }
 
-    if (v.length === 0) {
+    if (currentValue.length === 0) {
       return
     }
 
     this.setState(
-      { value: formatNumber(v) },
+      { value: formatNumber(currentValue) },
       () => this.props.onChange(this.state.value),
     )
   }
