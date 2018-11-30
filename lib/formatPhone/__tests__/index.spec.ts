@@ -1,11 +1,11 @@
-import addSpacesToNumber from '../addSpacesToNumber'
+import formatPhone from '../index'
 
 describe('', () => {
   test('', () => {
     const onlyCode = '7'
 
     expect(
-      addSpacesToNumber(onlyCode),
+      formatPhone(onlyCode),
     ).toBe('7')
   })
 
@@ -13,7 +13,7 @@ describe('', () => {
     const partNumber = '79'
 
     expect(
-      addSpacesToNumber(partNumber),
+      formatPhone(partNumber),
     ).toBe('7 (9')
   })
 
@@ -21,7 +21,7 @@ describe('', () => {
     const partNumber = '799'
 
     expect(
-      addSpacesToNumber(partNumber),
+      formatPhone(partNumber),
     ).toBe('7 (99')
   })
 
@@ -29,7 +29,7 @@ describe('', () => {
     const partNumber = '7999'
 
     expect(
-      addSpacesToNumber(partNumber),
+      formatPhone(partNumber),
     ).toBe('7 (999)')
   })
 
@@ -37,7 +37,7 @@ describe('', () => {
     const phone = '79994955033'
 
     expect(
-      addSpacesToNumber(phone),
+      formatPhone(phone),
     ).toBe('7 (999) 495 50 33')
   })
 
@@ -45,7 +45,7 @@ describe('', () => {
     const formattedNumber = '7 (999) 495 50'
 
     expect(
-      addSpacesToNumber(formattedNumber),
+      formatPhone(formattedNumber),
     ).toBe('7 (999) 495 50')
   })
 })

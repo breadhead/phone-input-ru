@@ -1,7 +1,7 @@
 import diff from 'fast-diff'
 import * as React from 'react'
 
-import formatNumber from './utils/addSpacesToNumber'
+import formatNumber from './formatPhone'
 
 const PHONE_COUNTRY_CODES = 7
 
@@ -10,6 +10,8 @@ interface Props {
   onChange?: (value) => void
   onBlur?: () => void
   onFocus?: () => void
+  required?: boolean
+  autoFocus?: boolean
 }
 
 interface State {
@@ -58,20 +60,20 @@ class PhoneInput extends React.Component<Props, State> {
   }
 
   public render() {
-    const { className, onBlur, onFocus } = this.props
+    const { className, onBlur, onFocus, required, autoFocus } = this.props
 
     return React.createElement(
       'input',
       {
         className,
-        onChange: (this.onPhoneInputChange),
-        // onBlur: (onBlur),
-        // onFocus: (onFocus),
+        onChange: this.onPhoneInputChange,
+        onBlur,
+        onFocus,
         value: `+${(this.state.value)}`,
-        // name: 'phone',
+        name,
         type: 'text',
-        // required: true,
-        // autoFocus: true,
+        required,
+        autoFocus,
         maxLength: 18,
       },
     )
