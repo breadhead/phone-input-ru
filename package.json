@@ -1,5 +1,5 @@
 {
-  "name": "@breadhead/phone-input",
+  "name": "@breadhead/phone-input-ru",
   "version": "1.0.0",
   "description": "formatting phone input with russian country code",
   "main": "dist/index.js",

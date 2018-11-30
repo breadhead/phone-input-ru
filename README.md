@@ -2,4 +2,4 @@
 
 ### instalation
 
-`yarn add @breadhead/phone-input`
+`yarn add @breadhead/phone-input-ru`

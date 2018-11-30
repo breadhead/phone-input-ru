@@ -24,6 +24,10 @@ class PhoneInput extends React.Component<Props, State> {
 
   public onPhoneInputChange = (evt: any) => {
 
+    if (evt.target.selectionStart <= 2 || evt.target.selectionEnd <= 2) {
+      return
+    }
+
     const { value } = evt.target
     let v = value.substr(1, value.length)
     const prevValue = this.state.value
@@ -38,7 +42,7 @@ class PhoneInput extends React.Component<Props, State> {
     if (['(', ')'].includes(d)) {
       v = v.substr(v, v.length - 1)
     } else {
-      if (isNaN(d)) {
+      if (isNaN(d) || (['7', '8'].includes(d) && v.length === 2)) {
         return
       }
     }
