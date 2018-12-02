@@ -1,13 +1,11 @@
 import * as React from 'react'
 
 import formatNumber from './formatPhone'
-import deleteBracketHandler from './formatPhone/deleteBracketHandler'
-import getStringsDiff from './formatPhone/getStringsDiff'
-import isAllowableNumber from './formatPhone/isAllowableNumber'
+import onInputChange from './formatPhone/onInputChange'
 
 export const MIN_VALUE_LENGTH = 2
 export const PHONE_COUNTRY_CODES = ['7', '8']
-const BRACKETS = ['(', ')']
+const MAX_VALUE_LENGTH = 18
 
 interface Props {
   className?: string
@@ -24,39 +22,24 @@ interface State {
 
 class PhoneInput extends React.Component<Props, State> {
 
+  public static defaultProps = {
+    onChange: () => null,
+  }
+
   public state = {
-    value: `${PHONE_COUNTRY_CODES[0]}`,
+    value: PHONE_COUNTRY_CODES[0],
   } as State
 
   public onPhoneInputChange = (evt: any) => {
-    // const currentValue = onInputChange(value, prevValue)
-
-    if (evt.target.selectionStart <= 2 || evt.target.selectionEnd <= 2) {
-      return
-    }
     const { value } = evt.target
+    const currentValue = onInputChange(value, this.state.value)
 
-    let currentValue = value.substr(1, value.length)
-    const prevValue = this.state.value
-
-    const currentDiff = getStringsDiff(currentValue, prevValue)
-
-    if (BRACKETS.includes(currentDiff)) {
-      currentValue = deleteBracketHandler(currentValue)
-    } else {
-      if (isNaN(currentDiff) || (isAllowableNumber(currentDiff, currentValue))) {
-        return
-      }
+    if (!!currentValue) {
+      this.setState(
+        { value: formatNumber(currentValue) },
+        () => this.props.onChange(this.state.value),
+      )
     }
-
-    if (currentValue.length === 0) {
-      return
-    }
-
-    this.setState(
-      { value: formatNumber(currentValue) },
-      () => this.props.onChange(this.state.value),
-    )
   }
 
   public render() {
@@ -69,12 +52,12 @@ class PhoneInput extends React.Component<Props, State> {
         onChange: this.onPhoneInputChange,
         onBlur,
         onFocus,
-        value: `+${(this.state.value)}`,
+        value: `+${this.state.value}`,
         name,
         type: 'text',
         required,
         autoFocus,
-        maxLength: 18,
+        maxLength: MAX_VALUE_LENGTH,
       },
     )
   }
