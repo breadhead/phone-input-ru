@@ -1,10 +1,13 @@
-import diff from 'fast-diff'
 import * as React from 'react'
 
-import getStringsDiff from 'formatPhone/getStringsDiff'
 import formatNumber from './formatPhone'
+import deleteBracketHandler from './formatPhone/deleteBracketHandler'
+import getStringsDiff from './formatPhone/getStringsDiff'
+import isAllowableNumber from './formatPhone/isAllowableNumber'
 
-const PHONE_COUNTRY_CODES = 7
+export const MIN_VALUE_LENGTH = 2
+export const PHONE_COUNTRY_CODES = ['7', '8']
+const BRACKETS = ['(', ')']
 
 interface Props {
   className?: string
@@ -22,28 +25,26 @@ interface State {
 class PhoneInput extends React.Component<Props, State> {
 
   public state = {
-    value: `${PHONE_COUNTRY_CODES}`,
+    value: `${PHONE_COUNTRY_CODES[0]}`,
   } as State
 
   public onPhoneInputChange = (evt: any) => {
+    // const currentValue = onInputChange(value, prevValue)
 
     if (evt.target.selectionStart <= 2 || evt.target.selectionEnd <= 2) {
       return
     }
-
     const { value } = evt.target
+
     let currentValue = value.substr(1, value.length)
     const prevValue = this.state.value
 
     const currentDiff = getStringsDiff(currentValue, prevValue)
 
-    if (['(', ')'].includes(currentDiff)) {
-      // обработаьь удаление скобочки
-      currentValue = currentValue.substr(currentValue, currentValue.length - 1)
+    if (BRACKETS.includes(currentDiff)) {
+      currentValue = deleteBracketHandler(currentValue)
     } else {
-      // это число?
-      // это допустимное число? hkfjdh(forbiddenNumbers)(diff) jhfd(['7', '8'])(diff)
-      if (isNaN(currentDiff) || (['7', '8'].includes(currentDiff) && currentValue.length === 2)) {
+      if (isNaN(currentDiff) || (isAllowableNumber(currentDiff, currentValue))) {
         return
       }
     }
