@@ -30,8 +30,8 @@ class PhoneInput extends React.Component<Props, State> {
     value: PHONE_COUNTRY_CODES[0],
   } as State
 
-  public onPhoneInputChange = (evt: any) => {
-    const { value } = evt.target
+  public onPhoneInputChange = (evt: React.SyntheticEvent) => {
+    const { value } = evt.target as HTMLInputElement
     const currentValue = onInputChange(value, this.state.value)
 
     if (!!currentValue) {
