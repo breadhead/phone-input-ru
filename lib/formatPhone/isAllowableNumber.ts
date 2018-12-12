@@ -1,6 +1,11 @@
-import { MIN_VALUE_LENGTH, PHONE_COUNTRY_CODES } from '../index'
+interface Props {
+  currentDiff: string
+  currentValue: string
+  minValueLength: number
+  phoneCountryCodes: string[]
+}
 
-const isAllowableNumber = (currentDiff: string, currentValue: string) =>
-  PHONE_COUNTRY_CODES.includes(currentDiff) && currentValue.length === MIN_VALUE_LENGTH ? true : false
+const isAllowableNumber = ({ currentDiff, currentValue, minValueLength, phoneCountryCodes }: Props) =>
+  phoneCountryCodes.includes(currentDiff) && currentValue.length === minValueLength
 
 export default isAllowableNumber

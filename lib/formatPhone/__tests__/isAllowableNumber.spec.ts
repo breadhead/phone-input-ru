@@ -1,4 +1,5 @@
 import isAllowableNumber from '../isAllowableNumber'
+import { MIN_VALUE_LENGTH, PHONE_COUNTRY_CODES } from './../../index'
 
 describe('isAllowableNumber', () => {
   test('should return false', () => {
@@ -6,7 +7,12 @@ describe('isAllowableNumber', () => {
     const currentValue = '+7999'
 
     expect(
-      isAllowableNumber(currentDiff, currentValue),
+      isAllowableNumber({
+        currentDiff,
+        currentValue,
+        minValueLength: MIN_VALUE_LENGTH,
+        phoneCountryCodes: PHONE_COUNTRY_CODES,
+      }),
     ).toEqual(false)
   })
   test('should return true', () => {
@@ -14,7 +20,12 @@ describe('isAllowableNumber', () => {
     const currentValue = '+7'
 
     expect(
-      isAllowableNumber(currentDiff, currentValue),
+      isAllowableNumber({
+        currentDiff,
+        currentValue,
+        minValueLength: MIN_VALUE_LENGTH,
+        phoneCountryCodes: PHONE_COUNTRY_CODES,
+      }),
     ).toEqual(true)
   })
 })

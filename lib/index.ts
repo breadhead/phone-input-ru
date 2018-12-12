@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import formatNumber from './formatPhone'
-import onInputChange from './formatPhone/onInputChange'
+import handleRawPhone from './formatPhone/handleRawPhone'
 
 export const MIN_VALUE_LENGTH = 2
 export const PHONE_COUNTRY_CODES = ['7', '8']
@@ -32,7 +32,7 @@ class PhoneInput extends React.Component<Props, State> {
 
   public onPhoneInputChange = (evt: React.SyntheticEvent) => {
     const { value } = evt.target as HTMLInputElement
-    const currentValue = onInputChange(value, this.state.value)
+    const currentValue = handleRawPhone(value, this.state.value)
 
     if (!!currentValue) {
       this.setState(

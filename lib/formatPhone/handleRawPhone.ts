@@ -1,10 +1,11 @@
+import { MIN_VALUE_LENGTH, PHONE_COUNTRY_CODES } from '../index'
 import deleteBracketHandler from './deleteBracketHandler'
 import getStringsDiff from './getStringsDiff'
 import isAllowableNumber from './isAllowableNumber'
 
 const BRACKETS = ['(', ')']
 
-const onInputChange = (value: string, prevValue: string) => {
+const handleRawPhone = (value: string, prevValue: string) => {
   let currentValue = value.substr(1, value.length)
 
   const currentDiff = getStringsDiff(currentValue, prevValue)
@@ -12,7 +13,12 @@ const onInputChange = (value: string, prevValue: string) => {
   if (BRACKETS.includes(currentDiff)) {
     currentValue = deleteBracketHandler(currentValue)
   } else {
-    if (isNaN(currentDiff) || isAllowableNumber(currentDiff, currentValue)) {
+    if (isNaN(currentDiff) || isAllowableNumber({
+      currentDiff,
+      currentValue,
+      minValueLength: MIN_VALUE_LENGTH,
+      phoneCountryCodes: PHONE_COUNTRY_CODES,
+    })) {
       return
     }
   }
@@ -24,4 +30,4 @@ const onInputChange = (value: string, prevValue: string) => {
   return currentValue
 }
 
-export default onInputChange
+export default handleRawPhone

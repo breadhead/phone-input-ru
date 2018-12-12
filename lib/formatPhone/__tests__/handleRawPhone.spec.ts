@@ -1,12 +1,12 @@
-import onInputChange from '../onInputChange'
+import handleRawPhone from '../handleRawPhone'
 
-describe('onInputChange', () => {
+describe('handleRawPhone', () => {
   test('should return value', () => {
     const value = '+79991112233'
     const prevValue = '+7999111223'
 
     expect(
-      onInputChange(value, prevValue),
+      handleRawPhone(value, prevValue),
     ).toEqual('79991112233')
   })
 
@@ -15,7 +15,7 @@ describe('onInputChange', () => {
     const prevValue = '+7999)'
 
     expect(
-      onInputChange(value, prevValue),
+      handleRawPhone(value, prevValue),
     ).toEqual('799')
   })
 
@@ -24,7 +24,7 @@ describe('onInputChange', () => {
     const prevValue = '+7(9'
 
     expect(
-      onInputChange(value, prevValue),
+      handleRawPhone(value, prevValue),
     ).toEqual('7')
   })
 
@@ -33,7 +33,7 @@ describe('onInputChange', () => {
     const prevValue = '+7'
 
     expect(
-      onInputChange(value, prevValue),
+      handleRawPhone(value, prevValue),
     ).toEqual('7')
   })
 
@@ -42,7 +42,7 @@ describe('onInputChange', () => {
     const prevValue = 'nenene'
 
     expect(
-      onInputChange(value, prevValue),
+      handleRawPhone(value, prevValue),
     ).toEqual(undefined)
   })
 
