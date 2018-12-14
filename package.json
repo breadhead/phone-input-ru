@@ -1,6 +1,6 @@
 {
   "name": "@breadhead/phone-input-ru",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "formatting phone input with russian country code",
   "main": "dist/index.js",
   "scripts": {
@@ -11,24 +11,23 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/breadhead/phone-input.git"
+    "url": "git+https://github.com/breadhead/phone-input-ru"
   },
   "keywords": [
-    "thunk",
-    "redux",
-    "error",
-    "middleware"
+    "react",
+    "input",
+    "phone",
+    "russia"
   ],
   "author": "Daria Moreno-Gogoleva <daria@breadhead.ru>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/breadhead/phone-input/issues"
+    "url": "https://github.com/breadhead/phone-input-ru/issues"
   },
-  "homepage": "https://github.com/breadhead/phone-input#readme",
+  "homepage": "https://github.com/breadhead/phone-input-ru#readme",
   "dependencies": {
     "fast-diff": "^1.2.0",
-    "lodash.flow": "^3.5.0",
-    "react-number-format": "^4.0.5"
+    "lodash.flow": "^3.5.0"
   },
   "devDependencies": {
     "@team-griffin/install-self-peers": "^1.1.1",
