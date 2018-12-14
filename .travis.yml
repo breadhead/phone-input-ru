@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+- '8'
+cache: yarn
+script: yarn test
+before_deploy: yarn
+deploy:
+  provider: npm
+  email: iwanttobealight@yandex.ru
+  skip_cleanup: true
+  api_key:
+    secure: aBO2KEI1J/Xns7hrULHVzMzjHIXVdQ18JrlmRtN4j788cvZ7wDH6Mf1ip71oXCCgjVcejqVbRINwRccCBf/a2SMYfLCNBnEUSa5ZsS9ndbXTGHHMP7u/cRkbwhfhRrjJWFBIbM7I6wcgh6gAKWHSbeLa0Us0CnLwhjM7xwZfHAa1Nf2hyV2lIoefWf0nHWT3kiX9Aw1VOvhRCZM7d9PEUNumBJ8793aNPZ8BsrOI9funm/i8AcZz9kJIL8L4AshULLi4LT/eUb0xNiKWxeIsTP6Wlum3qj0YBpoR6nemV58LZhvfEoByIgwodaFdN+xLuRS7RtHnH0m5aDkqZizxjFnwRC+yHqKB+NmQRMSsT22Q4OiHo0MDl67DNS3901gNT/7C1KOLTICFzAZEh8/kJXcF83t9y0qvOae4bqTtShCl4a2RguQkrUcZL6jCOH72cnjRpwy7hGfMwWnE+Bek1PxgrYJJdfnhO9gsatLRelBmGvmaEtou6xizoNYionI6jRLVdid/bF1b5Mwb9KRv2Xm8e0DqOqNBcZQwEl/FwDIl0DH25NWgvXER3isXe95Hn4f3ouQ/RB7t5YSL/EooelEw6x2PFtKN1WYGVJLnHgnb9iJdZS+Y7vCsu2xru/8KCvtdUiwQcWuvK2jsyTiJ9H4zieUvdlVxV5BKlT7YvGw=
+  on:
+    tags: true
+    repo: breadhead/phone-input-ru
