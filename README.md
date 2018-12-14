@@ -18,7 +18,7 @@ import PhoneInput from '@breadhead/phone-input-ru'
 interface Props {
   name: string
   className?: string
-  onChange?: (value) => void
+  onChange?: (value: string) => void
   onBlur?: () => void
   onFocus?: () => void
   required?: boolean
