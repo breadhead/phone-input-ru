@@ -14,6 +14,7 @@ interface Props {
   onFocus?: () => void
   required?: boolean
   autoFocus?: boolean
+  name: string
 }
 
 interface State {
@@ -43,7 +44,7 @@ class PhoneInput extends React.Component<Props, State> {
   }
 
   public render() {
-    const { className, onBlur, onFocus, required, autoFocus } = this.props
+    const { className, onBlur, onFocus, required, autoFocus, name } = this.props
 
     return React.createElement(
       'input',
