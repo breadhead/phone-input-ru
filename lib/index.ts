@@ -8,13 +8,13 @@ export const PHONE_COUNTRY_CODES = ['7', '8']
 const MAX_VALUE_LENGTH = 18
 
 interface Props {
+  name: string
   className?: string
   onChange?: (value) => void
   onBlur?: () => void
   onFocus?: () => void
   required?: boolean
   autoFocus?: boolean
-  name: string
 }
 
 interface State {
