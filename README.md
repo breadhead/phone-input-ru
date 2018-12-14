@@ -2,7 +2,7 @@
 
 > formatting phone input with russian country code
 
-### instalation
+### installation
 
 `yarn add @breadhead/phone-input-ru`
 
