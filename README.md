@@ -1,12 +1,12 @@
 # phone-input-ru
 
-* formatting phone input with russian country code
+> formatting phone input with russian country code
 
 ### instalation
 
 `yarn add @breadhead/phone-input-ru`
 
-### using
+### usage
 
 ```js
 import PhoneInput from '@breadhead/phone-input-ru'
