@@ -9,6 +9,7 @@ const MAX_VALUE_LENGTH = 18
 
 interface Props {
   name: string
+  id?: string
   className?: string
   onChange?: (value) => void
   onBlur?: () => void
@@ -44,12 +45,13 @@ class PhoneInput extends React.Component<Props, State> {
   }
 
   public render() {
-    const { className, onBlur, onFocus, required, autoFocus, name } = this.props
+    const { className, onBlur, onFocus, required, autoFocus, name, id, ...rest } = this.props
 
     return React.createElement(
       'input',
       {
         className,
+        id,
         onChange: this.onPhoneInputChange,
         onBlur,
         onFocus,
@@ -59,6 +61,7 @@ class PhoneInput extends React.Component<Props, State> {
         required,
         autoFocus,
         maxLength: MAX_VALUE_LENGTH,
+        ...rest,
       },
     )
   }
