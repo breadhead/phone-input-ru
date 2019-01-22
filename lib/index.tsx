@@ -45,24 +45,15 @@ class PhoneInput extends React.Component<Props, State> {
   }
 
   public render() {
-    const { className, onBlur, onFocus, required, autoFocus, name, id, ...rest } = this.props
 
-    return React.createElement(
-      'input',
-      {
-        className,
-        id,
-        onChange: this.onPhoneInputChange,
-        onBlur,
-        onFocus,
-        value: `+${this.state.value}`,
-        name,
-        type: 'text',
-        required,
-        autoFocus,
-        maxLength: MAX_VALUE_LENGTH,
-        ...rest,
-      },
+    return (
+      <input
+        {...this.props}
+        type='text'
+        maxLength={MAX_VALUE_LENGTH}
+        onChange={this.onPhoneInputChange}
+        value={`+${this.state.value}`}
+      />
     )
   }
 }
